@@ -1,0 +1,12 @@
+WHITESPACE = _{ (" " | "\t")+ }
+delim = _{ "-" | ":" }
+num = @{ ASCII_DIGIT+ }
+c = @{ ASCII_ALPHA }
+pass = @{ ASCII_ALPHA+ }
+line = {num ~ delim ~ num ~ c ~ delim ~ pass}
+foo = _{ SOI | EOI }
+main = {
+foo
+~ (line ~ "\n"?)+
+~ foo
+}
