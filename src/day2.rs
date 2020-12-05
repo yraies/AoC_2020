@@ -7,6 +7,7 @@ use pest::Parser;
 #[grammar = "day2.pest"]
 pub struct PwParser;
 
+#[derive(Debug)]
 pub struct Password {
     c: char,
     v1: usize,
@@ -14,10 +15,11 @@ pub struct Password {
     p: String,
 }
 
+#[allow(dead_code)]
 #[aoc_generator(day2, alt=pest)]
 pub fn generate_policy_pairs_pest(input: &str) -> Vec<Password> {
     let pairs = PwParser::parse(Rule::main, input).unwrap_or_else(|e| panic!("{}", e));
-    pairs.filter_map(|p| match p.as_rule() {
+    let foo = pairs.filter_map(|p| match p.as_rule() {
         Rule::line => {
             let mut line = p.into_inner();
             Some(Password{
@@ -28,7 +30,9 @@ pub fn generate_policy_pairs_pest(input: &str) -> Vec<Password> {
             })
         }
         _ => None,
-    }).collect()
+    }).collect();
+    println!("{:?}", &foo);
+    foo
 }
 
 #[aoc_generator(day2)]
@@ -65,7 +69,7 @@ pub fn num_of_valid_passwords_newplace(values: &[Password]) -> usize {
     }).count()
 }
 
-#[aoc(day2, part1, pest)]
+#[aoc(day2, part1, alt=pest)]
 pub fn num_of_valid_passwords_oldplace_pest(values: &[Password]) -> usize {
     values.iter().filter(|pass| {
         let count = pass.p.chars().filter(|&c| char::eq(&c, &pass.c)).count();
@@ -73,7 +77,7 @@ pub fn num_of_valid_passwords_oldplace_pest(values: &[Password]) -> usize {
     }).count()
 }
 
-#[aoc(day2, part2, pest)]
+#[aoc(day2, part2, alt=pest)]
 pub fn num_of_valid_passwords_newplace_pest(values: &[Password]) -> usize {
     values.iter().filter(|pass| {
         pass.p.chars()
