@@ -44,7 +44,7 @@ pub fn get_timestamp_for_constraint(input: &(u128, Vec<Option<u128>>)) -> String
                     i += 1;
                     continue 'check;
                 } else if i == boundary {
-                    match (last) {
+                    match last {
                         None => {
                             println!("Adding new constraint! {}\n", boundary);
                             last = Some(t0);
@@ -74,12 +74,12 @@ pub fn get_timestamp_for_constraint(input: &(u128, Vec<Option<u128>>)) -> String
 
 #[aoc(day13, part2, alt = yesbutno)]
 pub fn get_timestamp_for_constraint_yesbutno(input: &(u128, Vec<Option<u128>>)) -> String {
-    let reqs = input.1.iter().enumerate().filter_map(|val| match val {
+    let _reqs = input.1.iter().enumerate().filter_map(|val| match val {
         (_, None) => None,
         (dt, Some(id)) => Some((dt as u128, *id))
     }).collect::<Vec<(u128, u128)>>();
 
-    let mut i = 0;
+    let i = 0;
     let max = (0, 0);
     /*
         let max = reqs.iter().max_by_key(|(_, k)| *k).unwrap();
