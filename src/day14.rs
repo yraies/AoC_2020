@@ -64,7 +64,7 @@ impl VM {
             }
             Instruction::Mem(pos, val) => {
                 let temp_pos = *pos as u64 | self.current_mask.ones;
-                for i in (self.current_mask.get_floating_iter()) {
+                for i in self.current_mask.get_floating_iter() {
                     let p = temp_pos ^ i;
                     self.memory.insert(p as usize,*val);
                     //println!("Inserting {} at mem[{:#038b}]", val, p);
