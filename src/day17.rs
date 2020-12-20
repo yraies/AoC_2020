@@ -176,7 +176,7 @@ pub fn get_4d_cube_count(input: &Vec<Vec<Vec<bool>>>) -> String {
 mod tests {
     #[test]
     fn it_works_0() {
-        assert_eq!(&super::get_(&super::generate_plane(".#.\n..#\n###")), "0");
+        assert_eq!(&super::get_3d_cube_count(&super::generate_plane(".#.\n..#\n###")), "0");
     }
 }
 
