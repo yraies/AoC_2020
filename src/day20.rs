@@ -51,7 +51,7 @@ impl Tile {
             borders.push(val);
         }
         borders
-    }
+    }/*
     fn flip(&self, horizontal: bool, vertical: bool) -> Tile {
         let mut data = [[false; 10]; 10];
         let rows = if vertical { (0..9).rev() } else { 0..9 };
@@ -62,7 +62,7 @@ impl Tile {
             }
         }
         Tile { id: self.id, data }
-    }
+    }*/
 }
 
 #[aoc_generator(day20)]
@@ -108,7 +108,7 @@ pub fn get_multiplied_corner_ids(input: &Vec<Tile>) -> String {
 
     format!("{} <- {:?}", corners.iter().fold(1u64, |x, (&y, _)| x * y as u64), corners)
 }
-
+/*
 #[aoc(day20, part2)]
 pub fn find_monster(input: &Vec<Tile>) -> String {
     let mut border_map = HashMap::new();
@@ -134,7 +134,7 @@ pub fn find_monster(input: &Vec<Tile>) -> String {
 
 
     format!("{}", 0)
-}
+}*/
 
 /*
 #[cfg(test)]
